@@ -7,7 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [{type: 'server', name: 'Test server', content: 'test content!'}];
-  
+  gameElements = [{type: 'Odd', value: '123'}];
+
+  //Assignment4
+  onGameStarted(gameData: {type: string, value: string}) {
+    this.gameElements.push({
+      type: gameData.type,
+      value: gameData.value
+    });
+}
+
+  onGameStopped() {
+
+  }
   onServerAdded(serverData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
       type: 'server',
@@ -30,4 +42,5 @@ export class AppComponent {
   onDestroyFirst() {
     this.serverElements.splice(0, 1);
   }
+
 }

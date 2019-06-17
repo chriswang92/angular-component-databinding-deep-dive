@@ -1,7 +1,7 @@
 <div class="container">
   <app-cockpit 
-  (serverCreated)="onServerAdded($event)"
-  (blueprintCreated)="onBlueprintAdded($event)"
+    (serverCreated)="onServerAdded($event)"
+    (blueprintCreated)="onBlueprintAdded($event)"
   ></app-cockpit>
   <hr>
   <div class="row">
@@ -17,6 +17,20 @@
         <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
       </p>
     </app-server-element>
+    </div>
+  </div>
+  <hr>
+  <h4>Assignment4</h4>
+  <app-gamecontroll
+    (started)="onGameStarted($event)"
+    (stoped)="onGameStopped($event)"
+  ></app-gamecontroll>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-odd
+        *ngFor="let gameElement of gameElements"
+        [element]="gameElement"
+        [value]="gameElement.value"></app-odd>
     </div>
   </div>
 </div>
