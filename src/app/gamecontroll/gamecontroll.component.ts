@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { type } from 'os';
 
 @Component({
   selector: 'app-gamecontroll',
@@ -8,20 +9,30 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class GamecontrollComponent implements OnInit {
 
   // @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-  @Output() gameStarted = new EventEmitter<{serverName: string, serverContent: string}>();
-  constructor() { }
+  @Output() gameStarted = new EventEmitter<{type: string, val: number}>();
+  @Output() gameStopped = new EventEmitter<{type: string, val: number}>();
+  constructor() { 
+    this.count = 0;
+  }
 
   ngOnInit(): void {
   }
 
-  count = 0;
+  count;
   ref;
+
   onStartGame() {
+    this.count++;
+    type: string;
+    if(this.count % 2 == 0) {
+      type = 'Even';
+    }
     this.ref = setInterval(function() { this.count++ }, 1000);
     this.gameStarted.emit(this.ref);
   }
 
   onStopGame() {
     clearInterval(this.ref);
+    this.gameStopped.emit(this.ref);
   }
 }
