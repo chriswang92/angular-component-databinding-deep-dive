@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { type } from 'os';
 
 @Component({
   selector: 'app-gamecontroll',
@@ -9,30 +8,33 @@ import { type } from 'os';
 export class GamecontrollComponent implements OnInit {
 
   // @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
-  @Output() gameStarted = new EventEmitter<{type: string, val: number}>();
-  @Output() gameStopped = new EventEmitter<{type: string, val: number}>();
+  @Output() gameStarted = new EventEmitter<{type: string, value: number}>();
+  @Output() gameStopped = new EventEmitter<{type: string, value: number}>();
+  
   constructor() { 
-    this.count = 0;
+    console.log('constructor called');
   }
 
   ngOnInit(): void {
   }
 
-  count;
-  ref;
+  emitFunction() {
+    console.log('into setInterval');
+      this.count++;
+      this.type = this.count % 2 == 0 ? 'Even' : 'Odd';
+      console.log('type to emit: ' + this.type + ', count to emit: ' + this.count);
+      this.gameStarted.emit({type: this.type, value: this.count});
+  }
 
+  count = 0;
+  type = 'No type set';
   onStartGame() {
-    this.count++;
-    type: string;
-    if(this.count % 2 == 0) {
-      type = 'Even';
-    }
-    this.ref = setInterval(function() { this.count++ }, 1000);
-    this.gameStarted.emit(this.ref);
+    console.log('into onStartGame');
+    var ref = setInterval(() => this.emitFunction(), 1000);
   }
 
   onStopGame() {
-    clearInterval(this.ref);
-    this.gameStopped.emit(this.ref);
+    // clearInterval(this.ref);
+    // this.gameStopped.emit(this.ref);
   }
 }
