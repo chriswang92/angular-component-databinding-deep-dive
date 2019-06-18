@@ -9,7 +9,7 @@ export class GamecontrollComponent implements OnInit {
 
   // @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
   @Output() gameStarted = new EventEmitter<{type: string, value: number}>();
-  @Output() gameStopped = new EventEmitter<{type: string, value: number}>();
+  // @Output() gameStopped = new EventEmitter<{type: string, value: number}>();
   
   constructor() { 
     console.log('constructor called');
@@ -28,13 +28,14 @@ export class GamecontrollComponent implements OnInit {
 
   count = 0;
   type = 'No type set';
+  ref;
   onStartGame() {
     console.log('into onStartGame');
-    var ref = setInterval(() => this.emitFunction(), 1000);
+    this.ref = setInterval(() => this.emitFunction(), 1000);
   }
 
   onStopGame() {
-    // clearInterval(this.ref);
+    clearInterval(this.ref);
     // this.gameStopped.emit(this.ref);
   }
 }
