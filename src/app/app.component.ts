@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [{type: 'server', name: 'Test server', content: 'test content!'}];
-  gameElements = [{type: 'Odd', value: '123'}];
+  gameElements = [/*{type: 'Odd', value: '123'}*/];
 
   //Assignment4
   onGameStarted(gameData: {type: string, value: string}) {
