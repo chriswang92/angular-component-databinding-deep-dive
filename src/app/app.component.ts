@@ -7,14 +7,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   serverElements = [{type: 'server', name: 'Test server', content: 'test content!'}];
-  gameElements = [/*{type: 'Odd', value: '123'}*/];
-
+  gameElements: number[] = [/*{type: 'Odd', value: '123'}*/];
+  oddNumbers: number[] = [];
+  evenNumbers: number[] = [];
   //Assignment4
-  onGameStarted(gameData: {type: string, value: string}) {
-    this.gameElements.push({
-      type: gameData.type,
-      value: gameData.value
-    });
+  onGameStarted(value: number) {
+    // if (value % 2 === 0) {
+    //     this.evenNumbers.push(value);
+    // } else {
+    //   this.oddNumbers.push(value);
+    // }
+    this.gameElements.push(
+      // type: gameData.type,
+      value
+    );
 }
 
   onGameStopped() {
